@@ -1,7 +1,9 @@
 import Replicate  from "replicate";
+import dotenv from "dotenv"; // Import dotenv
+dotenv.config();
 var express = require('express');
 var app = express();
-//var server = require('./server');
+
 var path = require('path');
 
 
