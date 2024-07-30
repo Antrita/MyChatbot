@@ -1,8 +1,13 @@
+import Replicate  from "replicate";
 var express = require('express');
 var app = express();
+//var server = require('./server');
 var path = require('path');
 
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'app.html'));
@@ -14,6 +19,13 @@ app.get('/interface.js', function (req, res) {
 
 app.get('/app.css', function (req, res) {
     res.sendFile(path.join(__dirname, 'public', 'app.css'));
+});
+
+// Add an API endpoint to handle user messages
+app.post('/api/message', function (req, res) {
+    const userMessage = req.body.message; // Extract the message 
+    console.log('Received message:', userMessage);
+    res.json({ response: '' }); // Send back a default response
 });
 
 app.listen(3000, function () {
